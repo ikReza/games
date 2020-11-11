@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
+import { calculateWinner } from "./board.utlis";
+import BoardTemplate from "./boardTemplate";
 import Square from "../square/square";
-import { calculateWinner } from "../board.utlis";
 
 import "./board.scss";
 
-const Board = () => {
+const PlayerBoard = () => {
   const [squares, setSquares] = useState([]);
   const [xIsNext, setXIsNext] = useState(Boolean);
   const [winner, setWinner] = useState(null);
@@ -35,16 +36,12 @@ const Board = () => {
   };
 
   return (
-    <div>
-      {winner ? `Winner: ${winner}` : `Turn: ${player()}`}
-      <main>
-        {squares.map((val, i) => (
-          <Square key={i} value={val} onClick={() => makeMove(i)} />
-        ))}
-      </main>
-      <button onClick={newGame}>New Game</button>
-    </div>
+    <BoardTemplate winner={winner} player={player} newGame={newGame}>
+      {squares.map((val, i) => (
+        <Square key={i} value={val} onClick={() => makeMove(i)} />
+      ))}
+    </BoardTemplate>
   );
 };
 
-export default Board;
+export default PlayerBoard;

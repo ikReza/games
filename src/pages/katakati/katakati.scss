@@ -1,0 +1,23 @@
+.katakati-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #233;
+
+  .option-field {
+    font-size: 20px;
+    margin-bottom: 5vh;
+    color: white;
+
+    legend {
+      font-weight: bold;
+    }
+
+    label {
+      color: tomato;
+    }
+  }
+}

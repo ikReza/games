@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { calculateWinner } from "../board.utlis";
+import { useState, useEffect } from "react";
 
-import Square from "./square/square";
+import { calculateWinner } from "./board.utlis";
+import BoardTemplate from "./boardTemplate";
+import Square from "../square/square";
 
-import "./boardAI.scss";
+import "./board.scss";
 
 const BoardAI = () => {
   const [squares, setSquares] = useState([]);
   const [xIsNext, setXIsNext] = useState(true);
   const [winner, setWinner] = useState(null);
   const [human, setHuman] = useState(true);
-  // const [remaining, setRemaining] = useState([]);
 
   useEffect(() => {
     newGame();
@@ -59,15 +59,11 @@ const BoardAI = () => {
   };
 
   return (
-    <div>
-      {winner ? `Winner: ${winner}` : `Turn: ${player()}`}
-      <main>
-        {squares.map((val, i) => (
-          <Square key={i} value={val} onClick={() => makeMove(i)} />
-        ))}
-      </main>
-      <button onClick={newGame}>New Game</button>
-    </div>
+    <BoardTemplate winner={winner} player={player} newGame={newGame}>
+      {squares.map((val, i) => (
+        <Square key={i} value={val} onClick={() => makeMove(i)} />
+      ))}
+    </BoardTemplate>
   );
 };
 
